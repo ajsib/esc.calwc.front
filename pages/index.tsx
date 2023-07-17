@@ -35,7 +35,7 @@ const LandingPage: NextPage = () => {
   return (
     <>
       <Box
-        as={motion.div}
+        component={motion.div}
         initial="english"
         animate={isEnglish ? "english" : "french"}
         variants={colorVariants}
@@ -45,10 +45,10 @@ const LandingPage: NextPage = () => {
           textAlign: "center",
         }}
       >
-               <AnimatePresence mode='wait'>
+        <AnimatePresence>
           {isEnglish ? (
             <Typography
-              as={motion.div}
+              component={motion.div}
               key="english"
               variants={headerVariants}
               initial="hidden"
@@ -61,7 +61,7 @@ const LandingPage: NextPage = () => {
             </Typography>
           ) : (
             <Typography
-              as={motion.div}
+              component={motion.div}
               key="french"
               variants={headerVariants}
               initial="hidden"
@@ -91,10 +91,10 @@ const LandingPage: NextPage = () => {
           </Button>
         </Box>
 
-          <AnimatePresence mode='wait'>
+        <AnimatePresence>
           {isEnglish ? (
             <Typography
-              as={motion.div}
+              component={motion.div}
               key="english"
               variants={sentenceVariants}
               initial="hidden"
@@ -108,7 +108,7 @@ const LandingPage: NextPage = () => {
             </Typography>
           ) : (
             <Typography
-              as={motion.div}
+              component={motion.div}
               key="french"
               variants={sentenceVariants}
               initial="hidden"
