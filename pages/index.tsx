@@ -1,4 +1,4 @@
-import { Button, Box, Container, Typography } from "@mui/material";
+import { Button, Box, Container, Typography, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
 import { useRouter } from "next/router";
 import { NextPage } from 'next';
 import { useEffect, useState } from "react";
@@ -8,9 +8,18 @@ import { motion, AnimatePresence } from 'framer-motion';
 const LandingPage: NextPage = () => {
   const router = useRouter();
   const [isEnglish, setIsEnglish] = useState(true);
+  const [versionInfoOpen, setVersionInfoOpen] = useState(false);
 
   const handleContinue = () => {
     router.push(isEnglish ? "/en/" : "/fr/");
+  };
+
+  const handleVersionInfoOpen = () => {
+    setVersionInfoOpen(true);
+  };
+
+  const handleVersionInfoClose = () => {
+    setVersionInfoOpen(false);
   };
 
   const sentenceVariants = {
@@ -31,6 +40,18 @@ const LandingPage: NextPage = () => {
   };
 
   const toggleLanguage = () => setIsEnglish(!isEnglish);
+
+  useEffect(() => {
+    // Disable scrolling on mount
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      // Re-enable scrolling on unmount
+      document.documentElement.style.overflow = 'auto';
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
 
   return (
     <>
@@ -82,7 +103,8 @@ const LandingPage: NextPage = () => {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
+          overflow: 'hidden',
         }}
       >
         <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
@@ -144,6 +166,22 @@ const LandingPage: NextPage = () => {
         <Box
           sx={{
             position: 'fixed',
+            top: '1rem',
+            left: '1rem',
+            display: 'flex',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            zIndex: 999,
+          }}
+        >
+          <Button variant="outlined" onClick={handleVersionInfoOpen}>
+            {isEnglish ? "Alpha Version" : "Version Alpha"}
+          </Button>
+        </Box>
+
+        <Box
+          sx={{
+            position: 'fixed',
             bottom: '1rem',
             left: '1rem',
             display: 'flex',
@@ -165,6 +203,22 @@ const LandingPage: NextPage = () => {
         >
           <Image src="/images/cafi.png" alt="CAFI" width={80} height={70} />
         </Box>
+
+        <Dialog open={versionInfoOpen} onClose={handleVersionInfoClose}>
+          <DialogTitle>
+            {isEnglish ? "Version Information" : "Informations sur la version"}
+          </DialogTitle>
+          <DialogContent>
+            <Typography gutterBottom>{isEnglish ? "Development Team:" : "Équipe de développement:"}</Typography>
+            <Typography gutterBottom>- Cpl Sibley</Typography>
+            <Typography gutterBottom>{isEnglish ? "Stakeholders:" : "Parties prenantes:"}</Typography>
+            <Typography gutterBottom>- LCol Nalepa, Maj Bailey:</Typography>
+            <Typography gutterBottom>{isEnglish ? "Last Update: July 17, 2023" : "Dernière mise à jour : 17 juillet 2023"}</Typography>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleVersionInfoClose}>{isEnglish ? "Close" : "Fermer"}</Button>
+          </DialogActions>
+        </Dialog>
       </Container>
     </>
   );
