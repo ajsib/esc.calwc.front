@@ -78,7 +78,6 @@ const LandingPage: NextPage = () => {
               transition={{ duration: 2 }}
               sx={{ color: "white" }}
             >
-              Alpha Release
             </Typography>
           ) : (
             <Typography
@@ -91,7 +90,6 @@ const LandingPage: NextPage = () => {
               transition={{ duration: 2 }}
               sx={{ color: "white" }}
             >
-              Version Alpha
             </Typography>
           )}
         </AnimatePresence>
@@ -175,7 +173,7 @@ const LandingPage: NextPage = () => {
           }}
         >
           <Button variant="outlined" onClick={handleVersionInfoOpen}>
-            {isEnglish ? "Alpha Version" : "Version Alpha"}
+            {isEnglish ? "Alpha Release" : "Version Alpha"}
           </Button>
         </Box>
 
