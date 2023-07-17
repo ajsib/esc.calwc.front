@@ -6,11 +6,11 @@ const LandingPage: NextPage = () => {
   const router = useRouter();
 
   const handleContinue = () => {
-    router.push("/en/index");
+    router.push("/en/");
   };
 
   const handleContinuer = () => {
-    router.push("/fr/index");
+    router.push("/fr/");
   };
 
   return (
