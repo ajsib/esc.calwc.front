@@ -104,7 +104,7 @@ const LandingPage: NextPage = () => {
               variant="h5"
               sx={{ textAlign: 'center' }}
             >
-              Welcome to the Canadian Army Land Warfare Centre's Online Service Portal
+              Welcome to the Canadian Army Land Warfare Centre&apos;s Online Service Portal
             </Typography>
           ) : (
             <Typography
@@ -118,7 +118,7 @@ const LandingPage: NextPage = () => {
               variant="h5"
               sx={{ textAlign: 'center' }}
             >
-              Bienvenue sur le Portail de Services en ligne du Centre de Guerre Terrestre de l'armée Canadienne
+              Bienvenue sur le Portail de Services en ligne du Centre de Guerre Terrestre de l&apos;armée Canadienne
             </Typography>
           )}
         </AnimatePresence>
