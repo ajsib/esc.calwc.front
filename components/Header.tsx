@@ -1,48 +1,59 @@
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Button, useTheme, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import Image from 'next/image';
+import LangToggle from "../components/LangToggle";
+import { useMediaQuery } from "@mui/material";
 
 const Header = () => {
-    const router = useRouter();
-    const isEnglish = router.pathname.startsWith('/en');
-    
-    const handleLanguageToggle = () => {
-        const newRoute = isEnglish ? router.pathname.replace('/en', '/fr') : router.pathname.replace('/fr', '/en');
-        router.push(newRoute);
-    };
+  const router = useRouter();
+  const { palette } = useTheme();
+  const matchesSm = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
-    const handleHomeRedirect = () => {
-        const homeRoute = isEnglish ? "/fr/index" : "/en/index";
-        router.push(homeRoute);
-    };
+  const homepageText = router.locale === "en" ? "Home" : "Accueil";
+  const logoAltText = "CAFI Logo";
 
-    return (
-        <Box
-            sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                backgroundColor: "#F5F5F5", // off-white color
-                padding: "1rem",
-            }}
-        >
-            <Button variant="outlined" onClick={handleHomeRedirect}>
-                {isEnglish ? "Home" : "Accueil"}
-            </Button>
+  const handleHomePageClick = () => {
+    router.push(router.locale === "en" ? "/en/home" : "/fr/home");
+  };
 
-            <Typography variant="h6" fontWeight="bold" sx={{ display: 'flex', alignItems: 'center' }}>
-                CANADIAN ARMY
-                <Box sx={{ mx: 1 }}>
-                    <Image src="/images/cafi.png" alt="logo" width={60} height={60} />
-                </Box>
-                LAND WARFARE CENTRE
-            </Typography>
-
-            <Button variant="outlined" onClick={handleLanguageToggle}>
-                {isEnglish ? "FR" : "EN"}
-            </Button>
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "1rem",
+        backgroundColor: palette.grey[100],
+        flexWrap: matchesSm ? "wrap" : "nowrap"
+      }}
+    >
+      <Button variant="contained" color="primary" onClick={handleHomePageClick}>
+        {homepageText}
+      </Button>
+      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", textAlign: matchesSm ? "center" : "right" }}>
+          <Typography variant={matchesSm ? "subtitle2" : "h6"} component="div" sx={{ fontWeight: 'bold' }}>
+            CANADIAN ARMY
+          </Typography>
+          <Typography variant={matchesSm ? "subtitle2" : "h6"} component="div" sx={{ fontWeight: 'bold' }}>
+            LAND WARFARE CENTRE
+          </Typography>
         </Box>
-    );
+        <Box sx={{ margin: "0 1rem" }}>
+          <Image src="/images/cafi.png" alt={logoAltText} width={50} height={50} />
+        </Box>
+        <Box sx={{ display: "flex", flexDirection: "column", textAlign: matchesSm ? "center" : "left" }}>
+          <Typography variant={matchesSm ? "subtitle2" : "h6"} component="div" sx={{ fontWeight: 'bold' }}>
+            EXPERIMENTATION
+          </Typography>
+          <Typography variant={matchesSm ? "subtitle2" : "h6"} component="div" sx={{ fontWeight: 'bold' }}>
+            SERVICES
+          </Typography>
+        </Box>
+      </Box>
+      <LangToggle />
+    </Box>
+  );
 };
 
 export default Header;

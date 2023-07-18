@@ -5,9 +5,9 @@ const LanguageToggle = () => {
   const router = useRouter();
 
   const handleToggleLanguage = () => {
-    const { locale } = router;
+    const { locale, asPath } = router;
     const newLocale = locale === 'en' ? 'fr' : 'en';
-    router.push('/', '/', { locale: newLocale });
+    router.push(asPath, asPath, { locale: newLocale });
   };
 
   return (
