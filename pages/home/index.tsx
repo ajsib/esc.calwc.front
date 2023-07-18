@@ -5,7 +5,7 @@ import Header from '../../components/Header'
 const HomePage: NextPage = () => {
   return (
     <>
-      <Header></Header>
+      <Header/>
       <Container
         sx={{
           height: '100vh',
