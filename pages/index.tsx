@@ -134,7 +134,7 @@ const LandingPage: NextPage = () => {
               variant="h5"
               sx={{ textAlign: 'center' }}
             >
-              Bienvenue au portail du Centre des services d'expérimentation<br />du Centre de guerre terrestre de l'Armée canadienne
+              Bienvenue au portail du Centre des services d&apos;expérimentation<br />du Centre de guerre terrestre de l&apos;Armée canadienne
             </Typography>
           )}
         </AnimatePresence>
