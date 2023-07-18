@@ -4,14 +4,14 @@ import { NextPage } from 'next';
 import { useEffect, useState } from "react";
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import LangToggle from '../components/LangToggle';
 
 const LandingPage: NextPage = () => {
   const router = useRouter();
-  const [isEnglish, setIsEnglish] = useState(true);
   const [versionInfoOpen, setVersionInfoOpen] = useState(false);
 
   const handleContinue = () => {
-    router.push(isEnglish ? "/en/" : "/fr/");
+    router.push(router.locale === 'en' ? "/en/home" : "/fr/home");
   };
 
   const handleVersionInfoOpen = () => {
@@ -39,8 +39,6 @@ const LandingPage: NextPage = () => {
     french: { backgroundColor: "primary.main" },
   };
 
-  const toggleLanguage = () => setIsEnglish(!isEnglish);
-
   useEffect(() => {
     // Disable scrolling on mount
     document.documentElement.style.overflow = 'hidden';
@@ -58,7 +56,7 @@ const LandingPage: NextPage = () => {
       <Box
         component={motion.div}
         initial="english"
-        animate={isEnglish ? "english" : "french"}
+        animate={router.locale === 'en' ? "english" : "french"}
         variants={colorVariants}
         transition={{ duration: 2 }}
         sx={{
@@ -67,7 +65,7 @@ const LandingPage: NextPage = () => {
         }}
       >
         <AnimatePresence>
-          {isEnglish ? (
+          {router.locale === 'en' ? (
             <Typography
               component={motion.div}
               key="english"
@@ -105,14 +103,9 @@ const LandingPage: NextPage = () => {
           overflow: 'hidden',
         }}
       >
-        <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
-          <Button onClick={toggleLanguage} variant="outlined">
-            {isEnglish ? "FR" : "EN"}
-          </Button>
-        </Box>
 
         <AnimatePresence>
-          {isEnglish ? (
+          {router.locale === 'en' ? (
             <Typography
               component={motion.div}
               key="english"
@@ -154,11 +147,15 @@ const LandingPage: NextPage = () => {
         >
           <Button
             variant="contained"
-            color={isEnglish ? "success" : "primary"}
+            color={router.locale === 'en' ? "success" : "primary"}
             onClick={handleContinue}
           >
-            {isEnglish ? "Continue" : "Continuer"}
+            {router.locale === 'en' ? "Continue" : "Continuer"}
           </Button>
+        </Box>
+
+        <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
+          <LangToggle />
         </Box>
 
         <Box
@@ -169,14 +166,30 @@ const LandingPage: NextPage = () => {
             display: 'flex',
             justifyContent: 'flex-start',
             alignItems: 'center',
-            zIndex: 999,
           }}
         >
-          <Button variant="outlined" onClick={handleVersionInfoOpen}>
-            {isEnglish ? "Alpha Release" : "Version Alpha"}
+          <Button onClick={handleVersionInfoOpen}>
+            {router.locale === 'en' ? "Version Information" : "Informations sur la Version"}
           </Button>
         </Box>
 
+        <Dialog open={versionInfoOpen} onClose={handleVersionInfoClose}>
+          <DialogTitle>
+            {router.locale === 'en' ? "Version Information" : "Informations sur la Version"}
+          </DialogTitle>
+
+          <DialogContent>
+            {router.locale === 'en' ? "This is version 1.0.0 of the Land Warfare Centre's Online Service Portal." : "Il s'agit de la version 1.0.0 du portail de services en ligne du Centre de guerre terrestre."}
+          </DialogContent>
+
+          <DialogActions>
+            <Button onClick={handleVersionInfoClose}>
+              {router.locale === 'en' ? "Close" : "Fermer"}
+            </Button>
+          </DialogActions>
+        </Dialog>
+
+        {/* Insert images here */}
         <Box
           sx={{
             position: 'fixed',
@@ -184,7 +197,7 @@ const LandingPage: NextPage = () => {
             left: '1rem',
             display: 'flex',
             justifyContent: 'flex-start',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
         >
           <Image src="/images/cahq.png" alt="CAHQ" width={110} height={70} />
@@ -196,27 +209,11 @@ const LandingPage: NextPage = () => {
             right: '1rem',
             display: 'flex',
             justifyContent: 'flex-end',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
         >
           <Image src="/images/cafi.png" alt="CAFI" width={80} height={70} />
         </Box>
-
-        <Dialog open={versionInfoOpen} onClose={handleVersionInfoClose}>
-          <DialogTitle>
-            {isEnglish ? "Version Information" : "Informations sur la version"}
-          </DialogTitle>
-          <DialogContent>
-            <Typography gutterBottom>{isEnglish ? "Development Team:" : "Équipe de développement:"}</Typography>
-            <Typography gutterBottom>- Cpl Sibley</Typography>
-            <Typography gutterBottom>{isEnglish ? "Stakeholders:" : "Parties prenantes:"}</Typography>
-            <Typography gutterBottom>- LCol Nalepa, Maj Bailey:</Typography>
-            <Typography gutterBottom>{isEnglish ? "Last Update: July 17, 2023" : "Dernière mise à jour : 17 juillet 2023"}</Typography>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleVersionInfoClose}>{isEnglish ? "Close" : "Fermer"}</Button>
-          </DialogActions>
-        </Dialog>
       </Container>
     </>
   );
