@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Box, LinearProgress } from '@mui/material';
 import { useRouter } from 'next/router';
+
 import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import Footer from '../components/Footer';

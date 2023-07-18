@@ -2,12 +2,12 @@ import { Box, Button, useTheme, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import Image from 'next/image';
 import LangToggle from "../components/LangToggle";
-import { useMediaQuery } from "@mui/material";
+import { useMediaQuery, Theme } from "@mui/material";
 
 const Header = () => {
   const router = useRouter();
   const { palette } = useTheme();
-  const matchesSm = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const matchesSm = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
 
   const homepageText = router.locale === "en" ? "Home" : "Accueil";
   const logoAltText = "CAFI Logo";
@@ -15,6 +15,8 @@ const Header = () => {
   const handleHomePageClick = () => {
     router.push(router.locale === "en" ? "/en/home" : "/fr/home");
   };
+
+  const flexWrap = matchesSm ? "wrap" : "nowrap";
 
   return (
     <Box
@@ -24,7 +26,7 @@ const Header = () => {
         alignItems: "center",
         padding: "1rem",
         backgroundColor: palette.grey[100],
-        flexWrap: matchesSm ? "wrap" : "nowrap"
+        flexWrap: flexWrap
       }}
     >
       <Button variant="contained" color="primary" onClick={handleHomePageClick}>
@@ -47,7 +49,7 @@ const Header = () => {
             EXPERIMENTATION
           </Typography>
           <Typography variant={matchesSm ? "subtitle2" : "h6"} component="div" sx={{ fontWeight: 'bold' }}>
-            SERVICES
+            SERVICES CENTRE
           </Typography>
         </Box>
       </Box>
