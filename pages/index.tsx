@@ -53,6 +53,7 @@ const LandingPage: NextPage = () => {
 
   return (
     <>
+      
       <Box
         component={motion.div}
         initial="english"
@@ -103,56 +104,55 @@ const LandingPage: NextPage = () => {
           overflow: 'hidden',
         }}
       >
-
-        <AnimatePresence>
-          {router.locale === 'en' ? (
-            <Typography
-              component={motion.div}
-              key="english"
-              variants={sentenceVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              transition={{ duration: 2 }}
-              variant="h5"
-              sx={{ textAlign: 'center' }}
-            >
-              Welcome to the Canadian Army Land Warfare Centre&apos;s Online Service Portal
-            </Typography>
-          ) : (
-            <Typography
-              component={motion.div}
-              key="french"
-              variants={sentenceVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              transition={{ duration: 2 }}
-              variant="h5"
-              sx={{ textAlign: 'center' }}
-            >
-              Bienvenue sur le Portail de Services en ligne du Centre de Guerre Terrestre de l&apos;armée Canadienne
-            </Typography>
-          )}
-        </AnimatePresence>
-
-        <Box
-          sx={{
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'space-around',
-            alignItems: 'center',
-            marginTop: '2rem'
-          }}
-        >
-          <Button
-            variant="contained"
-            color={router.locale === 'en' ? "success" : "primary"}
-            onClick={handleContinue}
+          <AnimatePresence>
+            {router.locale === 'en' ? (
+              <Typography
+                component={motion.div}
+                key="english"
+                variants={sentenceVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                transition={{ duration: 2 }}
+                variant="h5"
+                sx={{ textAlign: 'center' }}
+              >
+                Welcome to the Canadian Army Land Warfare Centre&apos;s Online Service Portal
+              </Typography>
+            ) : (
+              <Typography
+                component={motion.div}
+                key="french"
+                variants={sentenceVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                transition={{ duration: 2 }}
+                variant="h5"
+                sx={{ textAlign: 'center' }}
+              >
+                Bienvenue sur le Portail de Services en ligne du Centre de Guerre Terrestre de l&apos;armée Canadienne
+              </Typography>
+            )}
+          </AnimatePresence>
+  
+          <Box
+            sx={{
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'space-around',
+              alignItems: 'center',
+              marginTop: '2rem'
+            }}
           >
-            {router.locale === 'en' ? "Continue" : "Continuer"}
-          </Button>
-        </Box>
+            <Button
+              variant="contained"
+              color={router.locale === 'en' ? "success" : "primary"}
+              onClick={handleContinue}
+            >
+              {router.locale === 'en' ? "Continue" : "Continuer"}
+            </Button>
+          </Box>
 
         <Box sx={{ position: 'absolute', top: 10, right: 10 }}>
           <LangToggle />
