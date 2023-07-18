@@ -106,19 +106,22 @@ const LandingPage: NextPage = () => {
       >
         <AnimatePresence>
           {router.locale === 'en' ? (
-            <Typography
-              component={motion.div}
-              key="english"
-              variants={sentenceVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              transition={{ duration: 2 }}
-              variant="h5"
-              sx={{ textAlign: 'center' }}
-            >
-              Welcome to the Canadian Army Land Warfare Centre&apos;s Experimentation Online Service Portal
-            </Typography>
+          <Typography
+            component={motion.div}
+            key="english"
+            variants={sentenceVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            transition={{ duration: 2 }}
+            variant="h5"
+            sx={{
+              textAlign: 'center',
+              '&:last-child': { fontSize: '1.5rem' }, // Add this line to style the last child (Experimentation Services Centre Portal)
+            }}
+          >
+            Welcome to the Canadian Army Land Warfare Centre&apos;s<br /> Experimentation Services Centre Portal
+          </Typography>
           ) : (
             <Typography
               component={motion.div}
@@ -131,7 +134,7 @@ const LandingPage: NextPage = () => {
               variant="h5"
               sx={{ textAlign: 'center' }}
             >
-              Bienvenue sur le Portail de Services au Expérimentation en ligne du Centre de Guerre Terrestre de l&apos;armée Canadienne
+              Bienvenue au portail du Centre des services d'expérimentation<br />du Centre de guerre terrestre de l'Armée canadienne
             </Typography>
           )}
         </AnimatePresence>
