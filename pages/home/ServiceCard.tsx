@@ -19,14 +19,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ name, description, icon, path
     setExpanded(!expanded);
   };
 
-  const language = {
-    en: {
-      goTo: 'Go to',
-    },
-    fr: {
-      goTo: 'Aller à',
-    },
-  };
+  const goToText = router.locale === 'en' ? 'Go to' : 'Aller à';
+
 
   return (
     <Card sx={{ width: 280, padding: '1rem' }}>
@@ -54,7 +48,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ name, description, icon, path
       </CardContent>
       <Box sx={{ p: 1 }}>
         <Button variant="contained" color="primary" fullWidth onClick={() => window.location.href = path}>
-          {language[locale].goTo} {name}
+        {`${goToText} ${name}`}
         </Button>
       </Box>
     </Card>
