@@ -14,7 +14,3 @@ a {
 * {
   box-sizing: border-box;
 }
-
-main {
-  flex-grow: 1;
-}
