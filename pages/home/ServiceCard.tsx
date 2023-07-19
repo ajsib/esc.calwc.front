@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Button, Card, CardContent, Typography, Collapse, IconButton } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useRouter } from 'next/router';
 
 interface ServiceCardProps {
   name: string;
@@ -10,10 +11,21 @@ interface ServiceCardProps {
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ name, description, icon, path }) => {
+  const router = useRouter();
+  const { locale } = router;
   const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
+  };
+
+  const language = {
+    en: {
+      goTo: 'Go to',
+    },
+    fr: {
+      goTo: 'Aller à',
+    },
   };
 
   return (
@@ -42,7 +54,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ name, description, icon, path
       </CardContent>
       <Box sx={{ p: 1 }}>
         <Button variant="contained" color="primary" fullWidth onClick={() => window.location.href = path}>
-          Go to {name}
+          {language[locale].goTo} {name}
         </Button>
       </Box>
     </Card>
