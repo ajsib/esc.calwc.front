@@ -18,22 +18,30 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ name, description, icon, path
 
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <object data={icon} type="image/svg+xml" height="140" style={{ width: '100%' }} />
-      <IconButton
-        onClick={handleExpandClick}
-        aria-expanded={expanded}
-        aria-label="show more"
-        sx={{ position: 'absolute', right: 0, top: 0 }}
-      >
-        <ExpandMoreIcon />
-      </IconButton>
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 140 }}>
+        <object data={icon} type="image/svg+xml" height="140" />
+      </Box>
+      <CardContent>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+            {name}
+          </Typography>
+          <IconButton
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </IconButton>
+        </Box>
+      </CardContent>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>{description}</Typography>
         </CardContent>
       </Collapse>
       <Box sx={{ p: 1 }}>
-        <Button variant="contained" color="primary" fullWidth onClick={() => window.location.href=path}>
+        <Button variant="contained" color="primary" fullWidth onClick={() => window.location.href = path}>
           Go to {name}
         </Button>
       </Box>
