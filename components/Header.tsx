@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import Image from 'next/image';
 import LangToggle from "../components/LangToggle";
 import { useMediaQuery, Theme } from "@mui/material";
-import { useState, useEffect } from "react";
 
 const Header = () => {
   const router = useRouter();
@@ -13,32 +12,9 @@ const Header = () => {
   const homepageText = router.locale === "en" ? "Home" : "Accueil";
   const logoAltText = "CAFI Logo";
 
-  const [show, setShow] = useState(true);
-  const [scrollPos, setScrollPos] = useState(0);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [scrollPos]);
-
-  const handleScroll = () => {
-    const currentScrollPos = window.pageYOffset;
-
-    if (currentScrollPos < scrollPos) {
-      setShow(true);
-    } else {
-      setShow(false);
-    }
-
-    setScrollPos(currentScrollPos);
-  };
-
   const handleHomePageClick = () => {
     router.push(router.locale === "en" ? "/en/home" : "/fr/home");
   };
-
 
   const translatedText = {
     home: router.locale === "en" ? "Home" : "Accueil",
