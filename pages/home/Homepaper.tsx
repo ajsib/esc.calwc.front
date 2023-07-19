@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Paper, useMediaQuery, useTheme, Typography, Box  } from '@mui/material';
 import ServiceCard from './ServiceCard';
+import { useRouter } from 'next/router';
 
 const services = [
   {
@@ -79,6 +80,8 @@ const services = [
 
 
 const HomePaper = () => {
+  const router = useRouter();
+  const { locale } = router;
   const theme = useTheme();
   const isExtraSmall = useMediaQuery(theme.breakpoints.down('xs'));
   const isSmall = useMediaQuery(theme.breakpoints.between('sm', 'md'));
@@ -103,7 +106,7 @@ const HomePaper = () => {
         padding: '1rem',
         marginTop: '1rem',
         marginBottom: '1rem',
-        width: '77%', // Set the width to 80% of the page
+        width: '90%', // Set the width to 80% of the page
         margin: 'auto', // Center the Paper horizontally
         display: 'flex',
         flexWrap: 'wrap',
@@ -122,10 +125,13 @@ const HomePaper = () => {
       boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
     }}>
       <Typography variant="h5" component="div" sx={{ fontWeight: 'bold' }}>
-        Welcome
+
+        { locale === 'en' ? 'Welcome' : 'Bienvenue'}
       </Typography>
       <Typography variant="body1" component="div" sx={{ fontWeight: 'medium', marginTop: '0.5rem' }}>
-      to the Canadian Army Land Warfare Centre (CALWC) Experimentation Services Centre Portal. 
+        { locale === 'en' ? 'Welcome to the Canadian Army Land Warfare Centre (CALWC) Experimentation Services Centre Portal. This Portal is currently under development and will be available soon. We are working diligently to provide you with a comprehensive platform to access a wide range of services and resources related to land warfare experimentation. Stay tuned for updates and exciting features coming your way!' 
+        : 'Bienvenue au portail du Centre de services d’expérimentation du Centre de guerre terrestre de l’Armée canadienne (CGTAC). Ce portail est actuellement en cours de développement et sera bientôt disponible. Nous travaillons avec diligence pour vous fournir une plate-forme complète pour accéder à un large éventail de services et de ressources liés à l&apos;expérimentation de la guerre terrestre. Restez à l&apos;affût des mises à jour et des fonctionnalités intéressantes à venir !'}
+       
       This Portal is currently under development and will be available soon. 
       We are working diligently to provide you with a comprehensive platform to access a wide range of services and resources 
       related to land warfare experimentation. Stay tuned for updates and exciting features coming your way!
@@ -144,7 +150,7 @@ const HomePaper = () => {
         }}
       >
         <Typography variant="h4" component="div">
-          Services
+          { locale === 'en' ? 'Services' : 'Prestations de service'}
         </Typography>
       </Box>
 
