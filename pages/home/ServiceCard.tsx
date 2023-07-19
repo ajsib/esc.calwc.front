@@ -17,12 +17,12 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ name, description, icon, path
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 140 }}>
-        <object data={icon} type="image/svg+xml" height="140" />
+    <Card sx={{ width: 280, padding: '1rem' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 100 }}>
+        <object data={icon} type="image/svg+xml" height="100" />
       </Box>
       <CardContent>
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', minHeight: 50 }}>
           <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
             {name}
           </Typography>
@@ -34,12 +34,12 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ name, description, icon, path
             <ExpandMoreIcon />
           </IconButton>
         </Box>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <Box sx={{ minHeight: 100 }}>
+            <Typography paragraph>{description}</Typography>
+          </Box>
+        </Collapse>
       </CardContent>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>{description}</Typography>
-        </CardContent>
-      </Collapse>
       <Box sx={{ p: 1 }}>
         <Button variant="contained" color="primary" fullWidth onClick={() => window.location.href = path}>
           Go to {name}
