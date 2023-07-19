@@ -16,23 +16,31 @@ const Header = () => {
     router.push(router.locale === "en" ? "/en/home" : "/fr/home");
   };
 
-  const flexWrap = matchesSm ? "wrap" : "nowrap";
-
   return (
     <Box
       sx={{
         display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
+        justifyContent: matchesSm ? "center" : "space-between",
+        alignItems: matchesSm ? "flex-start" : "center",
+        flexDirection: matchesSm ? "column" : "row",
         padding: "1rem",
         backgroundColor: palette.grey[100],
-        flexWrap: flexWrap
       }}
     >
-      <Button variant="contained" color="primary" onClick={handleHomePageClick}>
-        {homepageText}
-      </Button>
-      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%" }}>
+      {!matchesSm && (
+        <Button variant="contained" color="primary" onClick={handleHomePageClick}>
+          {homepageText}
+        </Button>
+      )}
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100%",
+          flexWrap: matchesSm ? "wrap" : "nowrap",
+        }}
+      >
         <Box sx={{ display: "flex", flexDirection: "column", textAlign: matchesSm ? "center" : "right" }}>
           <Typography variant={matchesSm ? "subtitle2" : "h6"} component="div" sx={{ fontWeight: 'bold' }}>
             CANADIAN ARMY
@@ -53,7 +61,23 @@ const Header = () => {
           </Typography>
         </Box>
       </Box>
-      <LangToggle />
+      {!matchesSm && <LangToggle />}
+      {matchesSm && (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginBottom: "1rem",
+            width: "100%",
+            marginTop: "1rem"
+          }}
+        >
+          <Button variant="contained" color="primary" onClick={handleHomePageClick}>
+            {homepageText}
+          </Button>
+          <LangToggle />
+        </Box>
+      )}
     </Box>
   );
 };
