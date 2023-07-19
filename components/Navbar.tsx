@@ -1,7 +1,6 @@
 import { Box, Drawer, IconButton, List, ListItem, ListItemText } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useState } from 'react';
-import { Typography } from '@mui/material';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -51,13 +50,19 @@ const Navbar = () => {
 
   return (
     <Box sx={{ position: 'fixed', top: '50%', left: 0, transform: 'translateY(-50%)', zIndex: 999 }}>
-      <IconButton
+        <IconButton
         onMouseEnter={toggleDrawer(true)}
         onClick={toggleDrawer(!open)}
-        sx={{ bgcolor: 'background.default', borderRadius: '50%', padding: '10px' }} // Changed the styles for kebab menu
-      >
+        sx={{
+            bgcolor: 'background.default',
+            borderRadius: '50%',
+            padding: '10px',
+            marginLeft: '-16px', // Move the kebab menu closer to the left end
+            backgroundColor: '#F9F9F9', // Change the background color to off-white
+        }}
+        >
         <MoreVertIcon />
-      </IconButton>
+        </IconButton>
       <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}>
         {list()}
       </Drawer>
