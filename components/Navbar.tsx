@@ -55,10 +55,13 @@ const Navbar = () => {
         onClick={toggleDrawer(!open)}
         sx={{
             bgcolor: 'background.default',
-            borderRadius: '10px',
-            padding: '6px',
-            marginLeft: '-13px', // Move the kebab menu closer to the left end
-            backgroundColor: '#FAF9F9', // Change the background color to off-white
+            borderRadius: '5px',
+            padding: '2px',
+            marginLeft: '-5px', // Move the kebab menu closer to the left end
+            backgroundColor: '#e9e9e9', // Change the background color to off-white
+            height: '70px',
+            width: '20px'
+
         }}
         >
         <MoreVertIcon />
