@@ -55,7 +55,7 @@ const Navbar = () => {
         onClick={toggleDrawer(!open)}
         sx={{
             bgcolor: 'background.default',
-            borderRadius: '50%',
+            borderRadius: '10px',
             padding: '6px',
             marginLeft: '-13px', // Move the kebab menu closer to the left end
             backgroundColor: '#FAF9F9', // Change the background color to off-white
