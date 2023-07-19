@@ -56,9 +56,9 @@ const Navbar = () => {
         sx={{
             bgcolor: 'background.default',
             borderRadius: '50%',
-            padding: '10px',
-            marginLeft: '-16px', // Move the kebab menu closer to the left end
-            backgroundColor: '#F9F9F9', // Change the background color to off-white
+            padding: '6px',
+            marginLeft: '-13px', // Move the kebab menu closer to the left end
+            backgroundColor: '#FAF9F9', // Change the background color to off-white
         }}
         >
         <MoreVertIcon />
