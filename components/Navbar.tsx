@@ -60,7 +60,8 @@ const Navbar = () => {
             marginLeft: '-5px', // Move the kebab menu closer to the left end
             backgroundColor: '#e9e9e9', // Change the background color to off-white
             height: '70px',
-            width: '20px'
+            width: '30px',
+            border: '1px solid black', // Add a black border
 
         }}
         >

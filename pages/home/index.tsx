@@ -4,6 +4,7 @@ import { Container, Typography } from '@mui/material';
 const HomePage: NextPage = () => {
   return (
     <>
+
       <Container
         sx={{
           height: '100vh',
@@ -14,8 +15,12 @@ const HomePage: NextPage = () => {
         }}
       >
         <Typography variant="h3" component="div">
-          Welcome to the Home Page!
+          Home Page
+
+
+          
         </Typography>
+        
       </Container>
 
     </>

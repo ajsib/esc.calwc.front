@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Image from 'next/image';
 import LangToggle from "../components/LangToggle";
 import { useMediaQuery, Theme } from "@mui/material";
+import { useState, useEffect } from "react";
 
 const Header = () => {
   const router = useRouter();
@@ -12,8 +13,39 @@ const Header = () => {
   const homepageText = router.locale === "en" ? "Home" : "Accueil";
   const logoAltText = "CAFI Logo";
 
+  const [show, setShow] = useState(true);
+  const [scrollPos, setScrollPos] = useState(0);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [scrollPos]);
+
+  const handleScroll = () => {
+    const currentScrollPos = window.pageYOffset;
+
+    if (currentScrollPos < scrollPos) {
+      setShow(true);
+    } else {
+      setShow(false);
+    }
+
+    setScrollPos(currentScrollPos);
+  };
+
   const handleHomePageClick = () => {
     router.push(router.locale === "en" ? "/en/home" : "/fr/home");
+  };
+
+
+  const translatedText = {
+    home: router.locale === "en" ? "Home" : "Accueil",
+    canadianArmy: router.locale === "en" ? "CANADIAN ARMY" : "ARMÉE CANADIENNE",
+    landWarfareCentre: router.locale === "en" ? "LAND WARFARE CENTRE" : "CENTRE DE GUERRE TERRESTRE",
+    experimentation: router.locale === "en" ? "EXPERIMENTATION" : "EXPÉRIMENTATION",
+    servicesCentre: router.locale === "en" ? "SERVICES CENTRE" : "CENTRE DES SERVICES",
   };
 
   return (
@@ -29,7 +61,7 @@ const Header = () => {
     >
       {!matchesSm && (
         <Button variant="contained" color="primary" onClick={handleHomePageClick}>
-          {homepageText}
+          {translatedText.home}
         </Button>
       )}
       <Box
@@ -43,10 +75,10 @@ const Header = () => {
       >
         <Box sx={{ display: "flex", flexDirection: "column", textAlign: matchesSm ? "center" : "right" }}>
           <Typography variant={matchesSm ? "subtitle2" : "h6"} component="div" sx={{ fontWeight: 'bold' }}>
-            CANADIAN ARMY
+            {translatedText.canadianArmy}
           </Typography>
           <Typography variant={matchesSm ? "subtitle2" : "h6"} component="div" sx={{ fontWeight: 'bold' }}>
-            LAND WARFARE CENTRE
+            {translatedText.landWarfareCentre}
           </Typography>
         </Box>
         <Box sx={{ margin: "0 1rem" }}>
@@ -54,10 +86,10 @@ const Header = () => {
         </Box>
         <Box sx={{ display: "flex", flexDirection: "column", textAlign: matchesSm ? "center" : "left" }}>
           <Typography variant={matchesSm ? "subtitle2" : "h6"} component="div" sx={{ fontWeight: 'bold' }}>
-            EXPERIMENTATION
+            {translatedText.experimentation}
           </Typography>
           <Typography variant={matchesSm ? "subtitle2" : "h6"} component="div" sx={{ fontWeight: 'bold' }}>
-            SERVICES CENTRE
+            {translatedText.servicesCentre}
           </Typography>
         </Box>
       </Box>
@@ -73,7 +105,7 @@ const Header = () => {
           }}
         >
           <Button variant="contained" color="primary" onClick={handleHomePageClick}>
-            {homepageText}
+            {translatedText.home}
           </Button>
           <LangToggle />
         </Box>

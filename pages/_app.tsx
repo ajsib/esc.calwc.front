@@ -50,12 +50,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       {loading && <LinearProgress />}
-      {!isLandingPage && <Navbar />}
-      {!isLandingPage && <Header />}
-      <Box marginTop={!isLandingPage ? 2 : 0}>
+      <Box sx={{display: 'grid', gridTemplateRows: 'auto 1fr auto'}}>
+        {!isLandingPage && <Navbar />}
+        {!isLandingPage && <Header />}
         <Component {...pageProps} />
+        {!isLandingPage && <Footer />}
       </Box>
-      {!isLandingPage && <Footer />}
     </ThemeProvider>
   );
 }
