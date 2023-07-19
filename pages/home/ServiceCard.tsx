@@ -17,6 +17,9 @@ interface ServiceCardProps {
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
+  if (!service) {
+    return <div>Loading...</div>;
+  }
   const router = useRouter();
   const [expanded, setExpanded] = useState(false);
 
