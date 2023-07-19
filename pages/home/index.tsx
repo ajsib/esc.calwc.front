@@ -1,10 +1,11 @@
 import { NextPage } from 'next';
 import { Container, Typography } from '@mui/material';
+import HomePaper from './Homepaper';
 
 const HomePage: NextPage = () => {
   return (
     <>
-
+      <HomePaper />
       <Container
         sx={{
           height: '100vh',
@@ -14,12 +15,6 @@ const HomePage: NextPage = () => {
           alignItems: 'center',
         }}
       >
-        <Typography variant="h3" component="div">
-          Home Page
-
-
-          
-        </Typography>
         
       </Container>
 
