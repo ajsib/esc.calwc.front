@@ -1,6 +1,7 @@
-import React from 'react';
-import { Box, Button, Card, CardActionArea, CardContent, Typography, CardMedia } from "@mui/material";
+import React, { useState } from 'react';
+import { Box, Button, Card, CardActionArea, CardContent, Typography, CardMedia, Collapse, IconButton } from "@mui/material";
 import { useRouter } from "next/router";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 interface Service {
   name: string;
@@ -16,6 +17,11 @@ interface ServiceCardProps {
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
   const router = useRouter();
+  const [expanded, setExpanded] = useState(false);
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
 
   const handleOnClick = () => {
     router.push(service.link);
@@ -23,25 +29,23 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
 
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea onClick={handleOnClick}>
-        <CardMedia
-          component="img"
-          height="140"
-          image={service.logo}
-          alt={service.name}
-        />
+      <object data={service.logo} type="image/svg+xml" height="140" style={{ width: '100%' }} />
+      <IconButton
+        onClick={handleExpandClick}
+        aria-expanded={expanded}
+        aria-label="show more"
+        sx={{ position: 'absolute', right: 0, top: 0 }}
+      >
+        <ExpandMoreIcon />
+      </IconButton>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {service.name}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {service.description}
-          </Typography>
+          <Typography paragraph>{service.description}</Typography>
         </CardContent>
-      </CardActionArea>
+      </Collapse>
       <Box sx={{ p: 1 }}>
         <Button variant="contained" color="primary" fullWidth onClick={handleOnClick}>
-          Learn More
+          Go to {service.name}
         </Button>
       </Box>
     </Card>
