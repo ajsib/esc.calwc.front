@@ -9,7 +9,6 @@ const Header = () => {
   const { palette } = useTheme();
   const matchesSm = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
 
-  const homepageText = router.locale === "en" ? "Home" : "Accueil";
   const logoAltText = "CAFI Logo";
 
   const handleHomePageClick = () => {
@@ -47,6 +46,7 @@ const Header = () => {
           justifyContent: "center",
           width: "100%",
           flexWrap: matchesSm ? "wrap" : "nowrap",
+          marginLeft: "-3%",
         }}
       >
         <Box sx={{ display: "flex", flexDirection: "column", textAlign: matchesSm ? "center" : "right" }}>

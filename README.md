@@ -1,24 +1,49 @@
-Welcome to the NextJS base template bootstrapped using the `create-next-app`. This template supports TypeScript, but you can use normal JavaScript as well.
+# CALWC Experimentation Services Centre Portal
 
-## Getting Started
+This project is a comprehensive platform built with Next.js, TypeScript, and Material UI, for accessing a wide range of services and resources related to land warfare experimentation. 
 
-Hit the run button to start the development server.
+## Features
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- Responsive design with support for various screen sizes.
+- Services including Profile Management, Ticket Request, Calendar, FAQ, Documents, Ticket Status, People, Tasks, Analytics, Notifications, Messaging, and Admin.
+- Language toggle functionality between English and French.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on `/api/hello`. This endpoint can be edited in `pages/api/hello.ts`.
+## Prerequisites
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- [Node.js](https://nodejs.org/)
+- [npm](https://www.npmjs.com/)
 
-## Learn More
+## Installation
 
-To learn more about Next.js, take a look at the following resources:
+1. Clone the repository:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
+```
+2. Navigate into the project directory:
+```bash
+    cd YOUR_REPOSITORY
+```
 
-## Productionizing your Next App
+3. install dependancies
 
-To make your next App run smoothly in production make sure to [turn this repl to an always-on repl.](https://docs.replit.com/hosting/enabling-always-on)
+```bash
+npm run dev
+```
 
-You can also produce a production build by running `npm run build` and [changing the run command](https://docs.replit.com/programming-ide/configuring-repl#run) to `npm run start`.
+## Running the project:
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+The application will be running at `http://localhost:3000`
+
+
+
+
+
+
+

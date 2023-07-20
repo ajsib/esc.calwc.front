@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Paper, useMediaQuery, useTheme, Typography, Box  } from '@mui/material';
 import ServiceCard from './ServiceCard';
 import { useRouter } from 'next/router';
+import Search from './search';
 
 const services = [
   {
@@ -163,6 +164,28 @@ const HomePaper = () => {
       </Typography>
     </Box>
 
+    <Box sx={{
+      padding: '1rem',
+      width: '100%', 
+      textAlign: 'centre',
+      backgroundColor: '#f5f5f5',
+      marginBottom: '1rem',
+      borderRadius: '4px',
+      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+    }}>
+      <Typography
+        variant="h5"
+        component="div"
+        sx={{
+          fontWeight: 'bold',
+          textAlign: 'center', // Center the text
+        }}
+      >
+        {locale === 'en' ? 'Search This Site' : 'Recherche cette cité'}
+      </Typography>
+      <Search/>
+    </Box>
+
       <Box sx={{
           backgroundColor: '#f5f5f5', // Custom header background color
           padding: '1rem',
@@ -173,9 +196,16 @@ const HomePaper = () => {
           boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
         }}
       >
-        <Typography variant="h4" component="div">
-          { locale === 'en' ? 'Services' : 'Prestations de service'}
-        </Typography>
+        <Typography
+        variant="h5"
+        component="div"
+        sx={{
+          fontWeight: 'bold',
+          textAlign: 'center', // Center the text
+        }}
+      >
+        {locale === 'en' ? 'Services Offered' : 'Prestations de Service'}
+      </Typography>
       </Box>
 
 
