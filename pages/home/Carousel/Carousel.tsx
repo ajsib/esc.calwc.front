@@ -5,10 +5,10 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 interface CarouselProps {
-  children: React.ReactNode[];
+  children?: React.ReactNode[];
 }
 
-const Carousel: React.FC<CarouselProps> = ({ children }) => {
+const Carousel: React.FC<CarouselProps> = ({ children = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
   const [userInteraction, setUserInteraction] = useState(false);
@@ -39,7 +39,12 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + children.length) % children.length);
   };
 
+  if (!children || !Array.isArray(children) || children.length === 0) {
+    return null; // or some placeholder content
+  }
+
   return (
+    
     <div style={{ position: 'relative', width: '100%' }} onClick={handleInteraction}>
       {children.map((child, index) => (
         <div
