@@ -44,7 +44,11 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
       {children.map((child, index) => (
         <div
           key={index}
-          style={{ display: index === currentIndex ? 'block' : 'none', marginBottom: '20px' }}
+          style={{
+            display: index === currentIndex ? 'block' : 'none',
+            marginBottom: '20px',
+            textAlign: 'center', // Center the content horizontally
+          }}
         >
           {child}
         </div>
