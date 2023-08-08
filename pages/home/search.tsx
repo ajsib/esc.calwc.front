@@ -32,7 +32,7 @@ const SearchBar = () => {
   };
 
   const getPlaceholderText = () => {
-    return locale === 'en' ? 'Search...' : 'Rechercher...';
+    return locale === 'en' ? 'Search this site...' : 'Rechercher cette site...';
   };
 
   return (

@@ -2,7 +2,11 @@ import React from 'react';
 import { Grid, Paper, useMediaQuery, useTheme, Typography, Box  } from '@mui/material';
 import ServiceCard from './ServiceCard';
 import { useRouter } from 'next/router';
-import Search from './search';
+import Carousel from './Carousel/Carousel';
+import Page1 from './Carousel/p1';
+import Page2 from './Carousel/p2';
+import Page3 from './Carousel/p3';
+import Page4 from './Carousel/p4';
 
 const services = [
   {
@@ -20,14 +24,6 @@ const services = [
     path: '/services/ticket-request',
     frenchname: 'Demande de ticket',
     frenchdescription: 'Soumettez une demande d\'assistance ou de support de notre équipe. Fournissez des informations détaillées sur votre problème, joignez des fichiers pertinents et suivez l\'évolution de votre ticket.'
-  },
-  {
-    name: 'Calendar',
-    description: 'View and manage your schedule, appointments, and events. Create and edit events, set reminders, and synchronize with your favorite calendar applications.',
-    icon: '/icons/calendar.svg',
-    path: '/services/calendar',
-    frenchname: 'Calendrier',
-    frenchdescription: 'Consultez et gérez votre emploi du temps, vos rendez-vous et vos événements. Créez et modifiez des événements, définissez des rappels et synchronisez avec vos applications de calendrier préférées.'
   },
   {
     name: 'FAQ',
@@ -78,22 +74,6 @@ const services = [
     frenchdescription: 'Suivez et analysez des données et des métriques pour obtenir des informations précieuses sur le comportement des utilisateurs, les performances et les tendances commerciales. Générez des rapports et visualisez des données pour une meilleure prise de décision.'
   },
   {
-    name: 'Notifications',
-    description: 'Manage your notification preferences and stay informed about important updates, announcements, and events. Customize the types of notifications you receive and how you receive them.',
-    icon: '/icons/notifications.svg',
-    path: '/services/notifications',
-    frenchname: 'Notifications',
-    frenchdescription: 'Gérez vos préférences de notification et restez informé des mises à jour importantes, des annonces et des événements. Personnalisez les types de notifications que vous recevez et la manière dont vous les recevez.'
-  },
-  {
-    name: 'Messaging',
-    description: 'Communicate and collaborate with other users through our messaging platform. Send messages, share files, and stay connected with your colleagues and teammates.',
-    icon: '/icons/messaging.svg',
-    path: '/services/messaging',
-    frenchname: 'Messagerie',
-    frenchdescription: 'Communiquez et collaborez avec d\'autres utilisateurs via notre plateforme de messagerie. Envoyez des messages, partagez des fichiers et restez connecté avec vos collègues et coéquipiers.'
-  },
-  {
     name: 'Admin',
     description: 'Access administrative functions and perform tasks related to system management, user roles, and configuration settings. Configure system settings, manage user permissions, and maintain system security.',
     icon: '/icons/admin.svg',
@@ -136,77 +116,29 @@ const HomePaper = () => {
         margin: 'auto', // Center the Paper horizontally
         display: 'flex',
         flexWrap: 'wrap',
-        gap: '1rem', // This ensures there's a consistent gap around each card
+        gap: '0.5rem', // This ensures there's a consistent gap around each card
         justifyContent: 'center' // This centers the cards in the Paper
       }} 
       elevation={3}
     >
-<Box sx={{
-      padding: '1rem',
-      width: '100%', 
-      textAlign: 'left',
-      backgroundColor: '#f5f5f5',
-      marginBottom: '1rem',
-      borderRadius: '4px',
-      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-    }}>
-      <Typography variant="h5" component="div" sx={{ fontWeight: 'bold' }}>
 
-        { locale === 'en' ? 'Welcome' : 'Bienvenue'}
-      </Typography>
-      <Typography variant="body1" component="div" sx={{ fontWeight: 'medium', marginTop: '0.5rem' }}>
-        { locale === 'en' ? 'Welcome to the Canadian Army Land Warfare Centre (CALWC) Experimentation Services Centre Portal. This Portal is currently under development and will be available soon. We are working diligently to provide you with a comprehensive platform to access a wide range of services and resources related to land warfare experimentation. Stay tuned for updates and exciting features coming your way!' 
-        : 'Bienvenue au portail du Centre de services d’expérimentation du Centre de guerre terrestre de l’Armée canadienne (CGTAC). Ce portail est actuellement en cours de développement et sera bientôt disponible. Nous travaillons avec diligence pour vous fournir une plate-forme complète pour accéder à un large éventail de services et de ressources liés à l&apos;expérimentation de la guerre terrestre. Restez à l&apos;affût des mises à jour et des fonctionnalités intéressantes à venir !'}
-       
-      This Portal is currently under development and will be available soon. 
-      We are working diligently to provide you with a comprehensive platform to access a wide range of services and resources 
-      related to land warfare experimentation. Stay tuned for updates and exciting features coming your way!
-
-      </Typography>
-    </Box>
-
-    <Box sx={{
-      padding: '1rem',
-      width: '100%', 
-      textAlign: 'centre',
-      backgroundColor: '#f5f5f5',
-      marginBottom: '1rem',
-      borderRadius: '4px',
-      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-    }}>
-      <Typography
-        variant="h5"
-        component="div"
-        sx={{
-          fontWeight: 'bold',
-          textAlign: 'center', // Center the text
-        }}
-      >
-        {locale === 'en' ? 'Search This Site' : 'Recherche cette Site'}
-      </Typography>
-      <Search/>
-    </Box>
+      {/* Insert here */}
+      <Carousel>
+        <Page1/>
+        <Page2/>
+        <Page3/>
+        <Page4/>
+      </Carousel>
 
       <Box sx={{
           backgroundColor: '#f5f5f5', // Custom header background color
           padding: '1rem',
-          width: '100%', // Header spans the entire length
-          textAlign: 'center', // Center the text
+          width: '100%', // Header spans the entire length of the page
           marginBottom: '1rem',
           borderRadius: '4px',
           boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
         }}
-      >
-        <Typography
-        variant="h5"
-        component="div"
-        sx={{
-          fontWeight: 'bold',
-          textAlign: 'center', // Center the text
-        }}
-      >
-        {locale === 'en' ? 'Services Offered' : 'Prestations de Service'}
-      </Typography>
+        >
       </Box>
 
 
