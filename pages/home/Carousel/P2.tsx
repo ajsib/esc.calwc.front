@@ -1,7 +1,7 @@
 // Page1.tsx
 import React from 'react';
 
-const p2: React.FC = () => {
+const P2: React.FC = () => {
   return (
     <div style={{ padding: '20px', border: '1px solid #e0e0e0', borderRadius: '8px' }}>
       <h2>Page 2</h2>
@@ -11,4 +11,4 @@ const p2: React.FC = () => {
   );
 }
 
-export default p2;
+export default P2;

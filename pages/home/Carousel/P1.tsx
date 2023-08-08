@@ -4,7 +4,7 @@ import { Box, Typography } from '@mui/material';
 import Search from '../search';
 import { useRouter } from 'next/router';
 
-const p1: React.FC = () => {
+const P1: React.FC = () => {
     const router = useRouter();
     const { locale } = router;
 
@@ -30,4 +30,4 @@ const p1: React.FC = () => {
   );
 }
 
-export default p1;
+export default P1;

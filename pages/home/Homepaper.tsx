@@ -3,10 +3,10 @@ import { Grid, Paper, useMediaQuery, useTheme, Typography, Box  } from '@mui/mat
 import ServiceCard from './ServiceCard';
 import { useRouter } from 'next/router';
 import Carousel from './Carousel/Carousel';
-import Page1 from './Carousel/p1';
-import Page2 from './Carousel/p2';
-import Page3 from './Carousel/p3';
-import Page4 from './Carousel/p4';
+import Page1 from './Carousel/P1';
+import Page2 from './Carousel/P2';
+import Page3 from './Carousel/P3';
+import Page4 from './Carousel/P4';
 
 const services = [
   {
