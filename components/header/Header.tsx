@@ -1,10 +1,15 @@
 import { Box, Button, useTheme, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import Image from 'next/image';
-import LangToggle from "../components/LangToggle";
+import LangToggle from "./LangToggle";
 import { useMediaQuery, Theme } from "@mui/material";
+import SidebarToggle from "./SidebarToggle";
 
-const Header = () => {
+interface HeaderProps {
+  toggleNavbar: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ toggleNavbar }) => {
   const router = useRouter();
   const { palette } = useTheme();
   const matchesSm = useMediaQuery((theme: Theme) => theme.breakpoints.down("sm"));
@@ -34,11 +39,7 @@ const Header = () => {
         backgroundColor: palette.grey[100],
       }}
     >
-      {!matchesSm && (
-        <Button variant="contained" color="primary" onClick={handleHomePageClick}>
-          {translatedText.home}
-        </Button>
-      )}
+      <SidebarToggle toggleSidebar={toggleNavbar} />
       <Box
         sx={{
           display: "flex",
@@ -80,9 +81,6 @@ const Header = () => {
             marginTop: "1rem"
           }}
         >
-          <Button variant="contained" color="primary" onClick={handleHomePageClick}>
-            {translatedText.home}
-          </Button>
           <LangToggle />
         </Box>
       )}

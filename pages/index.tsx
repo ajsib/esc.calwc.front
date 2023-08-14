@@ -4,7 +4,7 @@ import { NextPage } from 'next';
 import { useEffect, useState } from "react";
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import LangToggle from '../components/LangToggle';
+import LangToggle from '../components/header/LangToggle';
 
 const LandingPage: NextPage = () => {
   const router = useRouter();

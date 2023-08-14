@@ -6,12 +6,22 @@ import { Box, LinearProgress } from '@mui/material';
 import { useRouter } from 'next/router';
 
 import Navbar from '../components/Navbar';
-import Header from '../components/Header';
+import Header from '../components/header/Header';
 import Footer from '../components/Footer';
+import SidebarToggle from '../components/header/SidebarToggle';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [navbarOpen, setNavbarOpen] = useState(false);
+
+  const closeNavbar = () => {
+    setNavbarOpen(false);
+  };
+
+  const handleMouseLeave = () => {
+    setNavbarOpen(false);
+  };
 
   useEffect(() => {
     const handleStart = () => setLoading(true);
@@ -28,6 +38,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     };
   }, [router]);
 
+  const toggleNavbar = () => {
+    setNavbarOpen(!navbarOpen);
+  };
+
   const theme = createTheme({
     palette: {
       primary: {
@@ -37,7 +51,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         main: '#19857b',
       },
       error: {
-        main: '#red',
+        main: '#FF0000', // Corrected color value for error
       },
       background: {
         default: '#fff',
@@ -46,15 +60,16 @@ function MyApp({ Component, pageProps }: AppProps) {
   });
 
   const isLandingPage = router.pathname === '/';
-
   return (
     <ThemeProvider theme={theme}>
       {loading && <LinearProgress />}
-      <Box sx={{display: 'grid', gridTemplateRows: 'auto 1fr auto'}}>
-        {!isLandingPage && <Navbar />}
-        {!isLandingPage && <Header />}
+      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        {!isLandingPage && <Navbar open={navbarOpen} onClose={closeNavbar} onMouseLeave={handleMouseLeave} />}
+        {!isLandingPage && <Header toggleNavbar={toggleNavbar} />}
         <Component {...pageProps} />
-        {!isLandingPage && <Footer />}
+        <Box sx={{ mt: 'auto' }}>
+          {!isLandingPage && <Footer />}
+        </Box>
       </Box>
     </ThemeProvider>
   );
