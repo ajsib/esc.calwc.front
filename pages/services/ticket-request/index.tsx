@@ -77,12 +77,12 @@ const TicketRequest = () => {
         <Divider sx={{ my: 2 }} />
         
         <Typography variant="body1" paragraph>
-          In our context, we're passionate about understanding the impact of everything from new <em>technologies</em>, <em>tactics</em>, and <em>procedures</em> to <em>policies</em>. Evaluating the likely outcomes of these elements is crucial to determining whether novel concepts are worth pursuing.
+          In our context, we are passionate about understanding the impact of everything from new <em>technologies</em>, <em>tactics</em>, and <em>procedures</em> to <em>policies</em>. Evaluating the likely outcomes of these elements is crucial to determining whether novel concepts are worth pursuing.
         </Typography>
 
       {/* Add an explanation and a button */}
         <Typography variant="body1" paragraph>
-          If you're interested in learning more about experimentation, click the button below:
+          If you are interested in learning more about experimentation, click the button below:
         </Typography>
         <Button variant="outlined" color="primary">
           Learn More
